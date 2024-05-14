@@ -21,7 +21,7 @@ vector<vector<Plate>> Tables;
 void initGlobalvar();
 void initTables(vector<vector<Plate>>& Tables);
 void printTables(const vector<vector<Plate>>& Tables);
-void insertToTable(int i, int j, vector<vector<vector<int>>>& Tables);
+void insertToTable(vector<vector<Plate>>& Tables);
 
 //Main flow
 int main()
@@ -36,6 +36,13 @@ int main()
     cout << "Jumlah piring vertikal: " << Tables.size() << endl;
     cout << "Jumlah piring horizontal: " << Tables[0].size() << endl;
 
+    insertToTable(Tables);
+    insertToTable(Tables);
+
+    printTables(Tables);
+
+    cin.get();
+    return 0;
 }
 
 void initTables(vector<vector<Plate>>& Tables)
@@ -50,6 +57,9 @@ void initGlobalvar()
     CAKETYPE = 2;  
     TABLE_HORIZONTAL = 3;  
     TABLE_VERTICAL = 4;  
+
+    //Seed untuk randomize isi piring
+    srand(time(0));
 }
 
 void printTables(const vector<vector<Plate>>& Tables)
@@ -67,15 +77,17 @@ void printTables(const vector<vector<Plate>>& Tables)
         }
         cout << endl;
     }
+    cout << endl;
 }
 
 
-void insertToTable(int i, int j, vector<vector<vector<int>>>& Tables)
+void insertToTable(vector<vector<Plate>>& Tables)
 {
     //Membuat dua piring dengan isi yang bisa saling ditukar
     vector<int> Cake (MAXCAKE);
 
-    int MAXGENERATE = rand() % Cake.size();
+    int CAKESIZE = Cake.size();
+    int MAXGENERATE = rand() % CAKESIZE;
 
     //Merandom isi piring dengan maksimal dua jenis
     for (int c = 0; c < MAXGENERATE; c++)
@@ -83,7 +95,17 @@ void insertToTable(int i, int j, vector<vector<vector<int>>>& Tables)
         Cake[c] = rand() % CAKETYPE + 1;
     }
 
+    cout << "Isi piring: ";
+    for (int i = 0; i < CAKESIZE; i++)
+    {
+        cout << Cake[i] << " ";
+    } cout << endl << endl;
+
     //Memasukkan kue ke piring
-    Tables[i][j] = Cake;
+    int x, y;
+
+    cout << "Masukkan posisi meja yang diinginkan: (x y)" << endl;
+    cin >> x >> y;
+    Tables[x][y].Cakes = Cake;
 }
 
