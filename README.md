@@ -1,7 +1,7 @@
 # Cake_Sort
 Penugasan Algoritma dan Struktur Data 
 
-Remake game Cake Sort menggunakan bahasa C++. 
+Remake game Cake Sort menggunakan bahasa C++ untuk mempelajari struktur data dan algoritma. 
 
 Anggota Kelompok: 
 1. Muhammad Hasbi Ashshidiq  || 5223600042
